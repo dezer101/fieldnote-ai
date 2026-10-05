@@ -1,0 +1,59 @@
+{
+  "collection": "Relay AI Workspace — fictional product knowledge base",
+  "documents": [
+    {
+      "id": "workspace-setup",
+      "title": "Workspace setup and access guide",
+      "section": "Teams and roles",
+      "text": "A new Relay AI Workspace starts with an owner who can invite team members and assign workspace roles. Choose the smallest role that lets each person do their work. Before adding a knowledge source, confirm that the team is allowed to use its content in this workspace and that the source owner has approved access. Keep internal-only content in a workspace with the matching access group. If a member changes teams or leaves, the workspace owner should review their access and remove it when no longer needed. For access problems, collect the workspace name, the member's role, and the action they were trying to complete, then contact the workspace administrator."
+    },
+    {
+      "id": "knowledge-search",
+      "title": "Knowledge search and source links",
+      "section": "Grounded answers",
+      "text": "Relay can answer from documents that an administrator has added to the workspace knowledge library. It searches the available passages, then shows source links alongside a response when relevant material is found. Readers should open the cited source to check that it supports the answer they need. If an answer has no source links, the workspace may not contain the relevant information, the source may not be available to the current member, or the question may use different wording from the documents. Try a more specific question using terms from the source, check access, or add an approved document. A source link helps with review but does not guarantee that every sentence is correct."
+    },
+    {
+      "id": "workflow-approvals",
+      "title": "Connected tools and human approvals",
+      "section": "Actions and permissions",
+      "text": "A Relay workflow can prepare a draft using connected tools, but actions that change external records or send information require an approval step configured by the workspace owner. Review the proposed action, destination, and data before approving it. If a workflow is intended only to research, summarise, or draft, leave external write actions disabled. Never assume that a connected tool has permission to act simply because its account is linked. When a proposed action is unexpected, stop the run and ask the workflow owner to review its instructions and permissions. The activity record should make clear which step was proposed and whether a person approved it."
+    },
+    {
+      "id": "evaluation-guide",
+      "title": "AI workflow evaluation guide",
+      "section": "Quality checks before release",
+      "text": "Before sharing a new question-answer workflow, prepare a small reviewed set of representative questions with the source or outcome expected for each one. Include straightforward questions, paraphrases, questions with more than one relevant source, and questions the knowledge library cannot answer. Check whether the right sources are retrieved, whether claims are supported by those sources, and whether unsupported questions are declined. Record misses and revise the source material or retrieval settings before changing the prompt. Re-run the same cases after each update so that changes can be compared. A small evaluation set is an early warning tool, not proof of production quality; have a subject matter reviewer check important workflows."
+    },
+    {
+      "id": "connector-troubleshooting",
+      "title": "Knowledge connector troubleshooting",
+      "section": "Missing or outdated search results",
+      "text": "If expected material does not appear in a Relay answer, first check that the connector is marked available and that its last sync completed. Confirm that the document is in the selected workspace, that the current member can access it, and that the source has not been archived. Try a question using distinctive terms from the document. If the document changed recently, wait for the next completed sync or ask the workspace owner to start an approved refresh. Record the connector name, document title, last sync time, and a sample question when reporting the issue. Do not copy restricted source content into an unrelated workspace to work around an access problem."
+    },
+    {
+      "id": "data-handling",
+      "title": "Workspace data handling overview",
+      "section": "Content and retention",
+      "text": "Only add information that the workspace is authorised to process. Before connecting a source, check its owner, intended audience, and access rules. Use synthetic or redacted examples when demonstrating a workflow. Do not paste passwords, access tokens, personal records, or confidential customer details into a prompt. Workspace administrators should review provider and workspace data settings before enabling an external model connection. Retention and deletion depend on the configured provider and workspace settings; consult those settings rather than assuming that data is never retained. If sensitive material is added by mistake, stop using the workflow and notify the workspace administrator so the appropriate response can be followed."
+    },
+    {
+      "id": "prompt-design",
+      "title": "Prompt and workflow design notes",
+      "section": "Clear instructions and bounded tasks",
+      "text": "A useful Relay workflow states its purpose, the material it may use, the expected output, and what to do when evidence is missing. Break broad requests into clear steps and ask for a draft when a person should review the result. Tell the workflow to identify sources and distinguish facts in those sources from suggestions. Avoid instructions that ask it to invent missing details or perform actions outside the configured tools. Try realistic and edge-case questions before sharing a workflow, including a request that the sources cannot answer. Keep prompts short enough for teammates to understand and maintain."
+    },
+    {
+      "id": "release-notes",
+      "title": "Workflow updates and change review",
+      "section": "Managing prompt and source changes",
+      "text": "When a prompt, model setting, connector, or source document changes, note what changed and why. Re-run the workflow's evaluation questions and compare the retrieved sources and answers with the previous version. Review any new unsupported answer, missed citation, or unexpected action before sharing the update. If a source document has been replaced, check that old links no longer appear where current information is expected. Keep a rollback copy of the last reviewed configuration so the owner can restore it if a change causes problems. Announce material changes to workspace members and explain whether their review steps have changed."
+    },
+    {
+      "id": "usage-monitoring",
+      "title": "Usage and run monitoring guide",
+      "section": "Reviewing workflow runs",
+      "text": "Use the run history to investigate slow, incomplete, or failed workflow results. Note the workflow version, approximate run time, connected source status, and the step where progress stopped. Compare the result with a recent successful run before changing configuration. If a provider reports a temporary capacity or rate limit issue, wait and retry according to the workspace guidance rather than creating repeated requests. Review usage against the workspace's configured limits and ask its owner before enabling additional model or connector capacity. Remove prompt content from shared diagnostic notes when it includes material that should not be disclosed."
+    }
+  ]
+}
