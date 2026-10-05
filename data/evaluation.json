@@ -1,0 +1,21 @@
+{
+  "cases": [
+    {"question":"How do I check which role a team member has in a workspace?","expected_source":"workspace-setup"},
+    {"question":"Why might an answer have no source links?","expected_source":"knowledge-search"},
+    {"question":"When should a workflow ask for human approval before using a connected tool?","expected_source":"workflow-approvals"},
+    {"question":"How do I make a small evaluation set for a new AI workflow?","expected_source":"evaluation-guide"},
+    {"question":"What should I check when a knowledge connector stops returning current documents?","expected_source":"connector-troubleshooting"},
+    {"question":"What personal or confidential data should I avoid putting into a prompt?","expected_source":"data-handling"},
+    {"question":"What should a prompt say when evidence is missing?","expected_source":"prompt-design"},
+    {"question":"What should I review after changing a source document or model setting?","expected_source":"release-notes"},
+    {"question":"Where can I inspect a slow or failed workflow run?","expected_source":"usage-monitoring"},
+    {"question":"How do I review a workflow that will send information to another service?","expected_source":"workflow-approvals"},
+    {"question":"What should I record when reporting an integration sync problem?","expected_source":"connector-troubleshooting"},
+    {"question":"How can I keep an AI answer grounded in workspace documents?","expected_source":"knowledge-search"}
+  ],
+  "out_of_scope": [
+    "What is the weather tomorrow?",
+    "Which restaurant is open nearby?",
+    "What are the subscription prices for this product?"
+  ]
+}
