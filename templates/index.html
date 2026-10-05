@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en-AU">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f2f3ed">
+    <title>Fieldnote AI — Product knowledge assistant</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  </head>
+  <body>
+    <header>
+      <a class="brand" href="#"><span class="logo">F.</span><span>FIELDNOTE <small>KNOWLEDGE ASSIST</small></span></a>
+      <span class="demo"><i></i> FICTIONAL AI PRODUCT DEMO</span>
+    </header>
+    <main>
+      <aside class="rail">
+        <span>AI WORKSPACE / PRODUCT GUIDE</span>
+        <a class="active">◉ &nbsp; Ask Fieldnote</a>
+        <a href="#how">▤ &nbsp; Source library <b>{{ document_count }}</b></a>
+        <div class="rail-bottom"><span>LOCAL DEMO</span><small>All product guides are fictional.<br>No customer data is included.</small></div>
+      </aside>
+      <section class="content">
+        <div class="crumb">AI WORKSPACE <span>/</span> PRODUCT KNOWLEDGE</div>
+        <div class="title-row">
+          <div>
+            <div class="kicker">PRACTICAL ANSWERS, TRACEABLE SOURCES</div>
+            <h1>A clearer next step<br><em>starts with good evidence.</em></h1>
+            <p class="intro">Ask about a fictional AI workspace. Fieldnote searches product guides on knowledge search, workflow approvals, evaluation, integrations and data handling. It links to its sources or says when the information is missing.</p>
+          </div>
+          <div class="mark-card"><div class="mark-symbol">fn</div><span>BUILT FOR<br>AI TEAMS</span></div>
+        </div>
+        <div class="workspace">
+          <section class="chat">
+            <div class="chat-head">
+              <div><strong>AI product guide</strong><small>Grounded in {{ document_count }} fictional product documents</small></div>
+              <span class="ready"><i></i> READY</span>
+            </div>
+            <div class="messages" id="messages">
+              <div class="message assistant">
+                <span class="avatar">fn</span>
+                <div>
+                  <small>FIELDNOTE <span>· SAMPLE ASSISTANT</span></small>
+                  <p>Explore a fictional AI workspace guide. Choose a question below, or open a topic to see more examples.</p>
+                  <div class="sources"><span>TRY A QUESTION</span></div>
+                </div>
+              </div>
+            </div>
+            <div class="question-examples" aria-label="Example questions">
+              <div class="example-group">
+                <span class="example-topic">EVALUATION</span>
+                <div class="suggestions">
+                  <button>How do I evaluate a new AI workflow?</button>
+                  <button>What should I measure before a workflow goes live?</button>
+                  <button>How can I test whether answers are supported by sources?</button>
+                </div>
+              </div>
+              <div class="example-group">
+                <span class="example-topic">SOURCES &amp; SEARCH</span>
+                <div class="suggestions">
+                  <button>Why might an answer have no source links?</button>
+                  <button>What should I check when search misses a useful document?</button>
+                  <button>How do I tell whether a response is grounded in the guides?</button>
+                </div>
+              </div>
+              <div class="example-group">
+                <span class="example-topic">APPROVALS &amp; WORKFLOWS</span>
+                <div class="suggestions">
+                  <button>When should a workflow ask for human approval?</button>
+                  <button>What should happen when an AI workflow is uncertain?</button>
+                  <button>How can I review a workflow change before release?</button>
+                </div>
+              </div>
+              <div class="example-group">
+                <span class="example-topic">CONNECTORS &amp; DATA</span>
+                <div class="suggestions">
+                  <button>What should I check when a connector stops updating?</button>
+                  <button>What information should I avoid putting into a prompt?</button>
+                  <button>How should a team handle sensitive information in AI tools?</button>
+                </div>
+              </div>
+            </div>
+            <form id="ask-form">
+              <label for="question">YOUR QUESTION</label>
+              <div class="input-row"><input id="question" maxlength="700" placeholder="Ask about the fictional AI workspace…" autocomplete="off"><button aria-label="Send question">↗</button></div>
+              <div class="privacy">Use the fictional demo guides only. Don’t enter real confidential or personal information.</div>
+            </form>
+          </section>
+          <aside class="side">
+            <div class="side-card">
+              <div class="kicker">HOW IT WORKS</div>
+              <ol>
+                <li><b>01</b><span>Your question is matched to the product guides.</span></li>
+                <li><b>02</b><span>The strongest matching passages become the evidence.</span></li>
+              <li><b>03</b><span>Open a source link to inspect the supporting passage.</span></li>
+                <li><b>04</b><span>If evidence is weak, Fieldnote says it cannot answer.</span></li>
+              </ol>
+            </div>
+            <div class="side-card library" id="how">
+              <div class="side-title"><div><div class="kicker">SOURCE LIBRARY</div><strong>Relay AI Workspace</strong></div><span>{{ document_count }} DOCS</span></div>
+              {% for document in documents %}
+              <div class="doc-row"><span>▤</span>{{ document.title }}<small>FICTIONAL</small></div>
+              {% endfor %}
+            </div>
+            <div class="notice"><span>ⓘ</span><p>Relay is fictional product material for a portfolio demo. It is not live vendor documentation or a production AI service.</p></div>
+          </aside>
+        </div>
+        <footer><span>FIELDNOTE AI <b>·</b> PORTFOLIO BUILD</span><span>RETRIEVAL <b>→</b> SOURCES <b>→</b> HUMAN REVIEW</span></footer>
+      </section>
+    </main>
+    <script>
+      const form = document.querySelector('#ask-form');
+      const input = document.querySelector('#question');
+      const messages = document.querySelector('#messages');
+
+      function addMessage(text, who = 'user', sources = [], mode = '') {
+        const row = document.createElement('div');
+        row.className = 'message ' + who;
+        const avatar = document.createElement('span');
+        avatar.className = 'avatar';
+        avatar.textContent = who === 'assistant' ? 'fn' : 'SD';
+        const body = document.createElement('div');
+        const label = document.createElement('small');
+        label.textContent = who === 'assistant' ? 'FIELDNOTE · ' + mode.toUpperCase() : 'YOU';
+        const paragraph = document.createElement('p');
+        paragraph.textContent = text;
+        body.append(label, paragraph);
+        if (sources.length) {
+          const box = document.createElement('div');
+          box.className = 'sources';
+          const tag = document.createElement('span');
+          tag.textContent = 'SOURCES';
+          box.append(tag);
+          sources.forEach(source => {
+            const evidence = document.createElement('details');
+            evidence.className = 'source-evidence';
+            const summary = document.createElement('summary');
+            summary.textContent = source.title + ' · ' + source.section;
+            const passage = document.createElement('p');
+            passage.textContent = source.text;
+            evidence.append(summary, passage);
+            box.append(evidence);
+          });
+          body.append(box);
+        }
+        row.append(avatar, body);
+        messages.append(row);
+        messages.scrollTop = messages.scrollHeight;
+      }
+
+      async function ask(question) {
+        if (!question.trim()) return;
+        addMessage(question);
+        input.value = '';
+        form.querySelector('button').disabled = true;
+        try {
+          const response = await fetch('/api/ask', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ question })
+          });
+          const result = await response.json();
+          addMessage(result.answer || result.error, 'assistant', result.sources || [], result.mode || '');
+        } catch {
+          addMessage('I could not reach the local service. Check that the app is running and try again.', 'assistant', [], 'connection issue');
+        } finally {
+          form.querySelector('button').disabled = false;
+          input.focus();
+        }
+      }
+
+      form.addEventListener('submit', event => {
+        event.preventDefault();
+        ask(input.value);
+      });
+      document.querySelectorAll('.suggestions button').forEach(button => {
+        button.addEventListener('click', () => ask(button.textContent));
+      });
+    </script>
+  </body>
+</html>
